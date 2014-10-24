@@ -24,7 +24,7 @@
 		"You're signed in as" message
 		====================================================== -->
 		<section id="signed-in">   	
-	    	<h3>You are signed in as "current_user.user_name"</h3>
+	    	<h3>You are signed in as </h3>
 			<a id="sign-out" href="#">Sign Out</a>
 		</section>
 	</header>
@@ -37,8 +37,8 @@
 	  </div>
 	<% end %> -->
 <!-- 	======================================================
-	Sign-up window
-	====================================================== -- -->
+		Sign-up window
+		====================================================== -- -->
 	<section id="signing-up">
 			Full Name:<input id="full-name" type="text" name="name">
 			User Name:<input id="user-name" type="text" name="user_name">
@@ -55,7 +55,24 @@
 				Password: <input id="password" type="password" name="password">
 				<a href="#" id="sign-in">Sign In</a>
 		</section>
+<!-- 	======================================================
+		Peeps
+		===================================================== -->
+		<div id="peeps"
+		<%if @peeps%>
+		<% @peeps.each do |peep| %>
+		<% @user = User.first(:id => peep.user_id)%>
+		<ul>
+		<li><%=@user.name%>@<%=@user.user_name%><%=peep.time_added.strftime("%Y-%m-%d %H:%M:%S")%><br/><%=peep.message%></li>
+		</ul>
+		<%end%>
+		<%end%>
+		</div>
 
+<div id="post-a-peep">
+<a href="#">Post a Peep</a>
+</div>
+<!-- ============================================================================= -->
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/interface.js"></script>
 </body>
