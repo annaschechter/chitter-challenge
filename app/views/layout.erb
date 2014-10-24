@@ -8,22 +8,56 @@
 
 <body>
     <header>
-    	<div id="logo"<a href='/'>Chitter</a></div>
-    	<ul>
-    		<li><a href="/sessions/new" class="button">Log in</a></li>
-    		<li><a href="/users/new" class="button">Join</a></li>
+<!-- 	======================================================
+		Logo
+		====================================================== --> 
+    	<h1 id="logo"<a href='#'>Chitter</a></h1>
+<!-- 	======================================================
+		"login" & "join" buttons
+		====================================================== -->
+		<ul>
+    		<li><a id="login" href="#" class="button">Log in</a></li>
+    		<li><a id="join" href="#" class="button">Join</a></li>
     	</ul>
-    	<div id="signed-in">
-			<% if current_user %>
-		 	You are signed in as <%= current_user.user_name %>
-		      	<form id="sign-out" action="/sessions" method="post">
-		            <input type="hidden" name="_method" value="delete">
-		            <input type="submit" class="button" value="Sign Out">
-	          	</form>
-		    <% end %>
-		</div>
+
+<!-- 	======================================================
+		"You're signed in as" message
+		====================================================== -->
+		<section id="signed-in">   	
+	    	<h3>You are signed in as "current_user.user_name"</h3>
+			<a id="sign-out" href="#">Sign Out</a>
+		</section>
 	</header>
-	<%= yield %>
+
+
+
+<!-- 	<% if flash[:errors] %>
+	  <div class='flash notice'>
+	    <%= flash[:errors] %>
+	  </div>
+	<% end %> -->
+<!-- 	======================================================
+	Sign-up window
+	====================================================== -- -->
+	<section id="signing-up">
+			Full Name:<input id="full-name" type="text" name="name">
+			User Name:<input id="user-name" type="text" name="user_name">
+			Email:<input id="email-create" type="text" name="email">
+			Password:<input id="password-create" type="password" name="password">
+			<a id="sign-up" href="#">Sign Up</a>
+	</section>
+<!-- 	======================================================
+		Sign-in window
+		===================================================== -->
+
+		<section id="signing-in">
+				Email: <input id="email" type="text" name="email">
+				Password: <input id="password" type="password" name="password">
+				<a href="#" id="sign-in">Sign In</a>
+		</section>
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/interface.js"></script>
 </body>
 
 

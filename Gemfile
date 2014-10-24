@@ -6,6 +6,8 @@ gem 'data_mapper'
 gem 'dm-postgres-adapter'
 gem 'bcrypt-ruby'
 gem 'rack-flash3'
+gem 'unicorn'
+gem 'json'
 
 group :development, :test do
 	gem 'rspec'
