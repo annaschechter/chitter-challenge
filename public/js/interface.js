@@ -11,21 +11,23 @@ $(document).ready(function() {
 
 	$('#login').on('click', function(){
 		$('#signing-in').show();
-
-		// $('#sign-in').on('click', function() {
-		// 	var email = $('#email').val();
-		// 	var password = $('#password').val();
-		// 	$.get("/users", function(data){
+		$('#sign-in').on('click', function() {
+			var email = $('#email').val();
+			var password = $('#password').val();
+			$.getJSON("/users/"+email+"/"+password, function(user) {
+				console.log(user.id);
+				$('#message').append(user.name)
+			});
+			$('#signing-in').hide();
+			$('#signed-in').show();
+		});
+	});
 		// 		var userId = data.users.email;
 		// 		$('#signed-in').append(data.currentUser.name)
 	// // 			// $.post("/sessions/new", function(data) {
 	// // 			// 	data.currentUser.id = userId;	
 	// // 			// });
-	// // 		});
-	// // 		$('#signing-in').hide();
-	// // 		$('#signed-in').show();
-	// // 	});
-	});
+	
 
 	$('#join').on('click', function(){
 		$('#signing-up').show();
@@ -36,7 +38,7 @@ $(document).ready(function() {
 				email: $('#email-create').val(),
 				password: $('#password-create').val(),
 			});
-			$('#signed-in').append($('#full-name').val());
+			$('#message').append($('#full-name').val());
 			$('#signed-in').show();
 			$('#signing-up').hide();
 		});

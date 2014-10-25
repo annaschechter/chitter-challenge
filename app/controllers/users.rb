@@ -4,8 +4,18 @@ get '/users' do
     return users.to_json
 end
 
-# get '/users/:email' do
-# end
+get '/users/:email/:password' do
+	content_type :json
+	email, password = params[:email], params[:password]
+	user = User.authenticate(email, password)
+	if user
+		return user.to_json
+	# 	session[:user_id] = user.id
+ #        redirect to('/')
+    else
+    	flash[:errors] = ["The email or password is incorrect"]
+    end
+end 
 
 post '/users' do
 	@user = User.create(:name => params[:name],

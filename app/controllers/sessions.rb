@@ -1,21 +1,13 @@
 
-get '/sessions/new' do
-	# erb :"sessions/new"
-end
+# get '/sessions/new' do
+# 	# erb :"sessions/new"
+# end
 
-post '/sessions' do
+# post '/sessions' do
 	
-	# email, password = params[:email], params[:password]
-	# user = User.authenticate(email, password)
-	# if user
-	# 	session[:user_id] = user.id
- #        redirect to('/')
- #    else
- #    	flash[:errors] = ["The email or password is incorrect"]
- #    end
-end
+# end
 
-delete '/sessions' do
-	# session[:user_id] = nil
-	# redirect '/'
-end
+# delete '/sessions' do
+# 	# session[:user_id] = nil
+# 	# redirect '/'
+# end

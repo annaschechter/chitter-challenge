@@ -24,13 +24,11 @@
 		"You're signed in as" message
 		====================================================== -->
 		<section id="signed-in">   	
-	    	<h3>You are signed in as </h3>
+	    	<h3 id="message">You are signed in as </h3>
 			<a id="sign-out" href="#">Sign Out</a>
 		</section>
 	</header>
-
-
-
+	<main>
 <!-- 	<% if flash[:errors] %>
 	  <div class='flash notice'>
 	    <%= flash[:errors] %>
@@ -39,17 +37,16 @@
 <!-- 	======================================================
 		Sign-up window
 		====================================================== -- -->
-	<section id="signing-up">
-			Full Name:<input id="full-name" type="text" name="name">
-			User Name:<input id="user-name" type="text" name="user_name">
-			Email:<input id="email-create" type="text" name="email">
-			Password:<input id="password-create" type="password" name="password">
-			<a id="sign-up" href="#">Sign Up</a>
-	</section>
+		<section id="signing-up">
+				Full Name:<input id="full-name" type="text" name="name">
+				User Name:<input id="user-name" type="text" name="user_name">
+				Email:<input id="email-create" type="text" name="email">
+				Password:<input id="password-create" type="password" name="password">
+				<a id="sign-up" href="#">Sign Up</a>
+		</section>
 <!-- 	======================================================
 		Sign-in window
 		===================================================== -->
-
 		<section id="signing-in">
 				Email: <input id="email" type="text" name="email">
 				Password: <input id="password" type="password" name="password">
@@ -69,9 +66,10 @@
 		<%end%>
 		</div>
 
-<div id="post-a-peep">
-<a href="#">Post a Peep</a>
-</div>
+		<div id="post-a-peep">
+		<a href="#">Post a Peep</a>
+		</div>
+	</main>
 <!-- ============================================================================= -->
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/interface.js"></script>
