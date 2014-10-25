@@ -10,15 +10,13 @@ get '/users/:email/:password' do
 	user = User.authenticate(email, password)
 	if user
 		return user.to_json
-	# 	session[:user_id] = user.id
- #        redirect to('/')
     else
     	flash[:errors] = ["The email or password is incorrect"]
     end
 end 
 
 post '/users' do
-	@user = User.create(:name => params[:name],
+	user = User.create(:name => params[:name],
 						:user_name => params[:user_name],
 		                :email => params[:email],
 		                :password => params[:password])

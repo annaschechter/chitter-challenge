@@ -15,36 +15,38 @@ $(document).ready(function() {
 			var email = $('#email').val();
 			var password = $('#password').val();
 			$.getJSON("/users/"+email+"/"+password, function(user) {
-				console.log(user.id);
-				$('#message').append(user.name)
+				var name = user.name;
+				var user_name = user.user_name;
+				$.post('/sessions', {name: name, user_name: user_name});
+				$('#name-signed-in').text(name);
 			});
+
 			$('#signing-in').hide();
 			$('#signed-in').show();
 		});
 	});
-		// 		var userId = data.users.email;
-		// 		$('#signed-in').append(data.currentUser.name)
-	// // 			// $.post("/sessions/new", function(data) {
-	// // 			// 	data.currentUser.id = userId;	
-	// // 			// });
 	
 
 	$('#join').on('click', function(){
 		$('#signing-up').show();
 		$('#sign-up').on('click', function() {
-			$.post("/users", {
+			$.post('/users', {
 				name: $('#full-name').val(),
 				user_name: $('#user-name').val(),
 				email: $('#email-create').val(),
 				password: $('#password-create').val(),
 			});
-			$('#message').append($('#full-name').val());
+			$.post('/sessions', {name: $('#full-name').val(), user_name: $('#user-name').val()});
+			$('#name-signed-in').text($('#full-name').val());
 			$('#signed-in').show();
 			$('#signing-up').hide();
 		});
 	});
+	
 
 	$('#sign-out').on('click', function() {
+		$.post('/sessions', {name: null, user_name: null});
+		$('#name-signed-in').text("");
 		$('#signed-in').hide();
 		window.location = ("/");
 	});
