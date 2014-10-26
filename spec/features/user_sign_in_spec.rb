@@ -25,7 +25,7 @@ feature "User signs in" do
 
 
 	def sign_in(email, password)
-		visit '/sessions/new'
+		click_on "Log in"
 		fill_in :email, :with => email
 		fill_in :password, :with => password
 		click_on "Sign In"

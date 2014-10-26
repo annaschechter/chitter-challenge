@@ -1,10 +1,16 @@
 $(document).ready(function() {
 
 	$('#signing-in').hide();
-	$('#signed-in').hide();
 	$('#signing-up').hide();
 	$('#posting-peep').hide();
 
+	$.getJSON('/sessions', function(data) {
+		if(data[0] === "" || "null") 	$('#signed-in').hide();
+		else {
+			$('#name-signed-in').text(data[1]);
+			$('#signed-in').show();
+		};
+	});
 
 	$('#logo').on('click', function(){
 		window.location = ("/");
@@ -38,12 +44,12 @@ $(document).ready(function() {
 		$('#signing-up').show();
 		$('#sign-up').on('click', function() {
 			$.post('/users', {
-				name: $('#full-name').val(),
-				user_name: $('#user-name').val(),
-				email: $('#email-create').val(),
-				password: $('#password-create').val(),
+				name: $('#full_name').val(),
+				user_name: $('#user_name').val(),
+				email: $('#email_create').val(),
+				password: $('#password_create').val(),
 			});
-			$.getJSON('/users/'+$('#email-create').val()+"/"+$('#password-create').val(), function (user) {
+			$.getJSON('/users/'+$('#email_create').val()+"/"+$('#password_create').val(), function (user) {
 				if(user === null) $('#errors').text("This username or email is already taken")
 				else {
 					var name = user.name;

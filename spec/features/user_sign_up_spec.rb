@@ -20,11 +20,12 @@ feature "User signs up" do
 	end
 
 	def sign_up(name, user_name, email, password)
-		visit '/users/new'
-		fill_in :name, :with => name
+		visit '/'
+		click_on "Join"
+		fill_in :full_name, :with => name
 		fill_in :user_name, :with => user_name
-		fill_in :email, :with => email
-		fill_in :password, :with => password
+		fill_in :email_create, :with => email
+		fill_in :password_create, :with => password
 		click_on "Sign Up"
 	end
 end

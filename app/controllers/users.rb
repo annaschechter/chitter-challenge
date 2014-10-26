@@ -25,4 +25,9 @@ post '/users' do
 						:user_name => params[:user_name],
 		                :email => params[:email],
 		                :password => params[:password])
+	if user 
+		return user
+	else 
+		return ""
+	end
 end
