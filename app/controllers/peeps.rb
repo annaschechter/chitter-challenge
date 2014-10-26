@@ -1,12 +1,3 @@
-# get '/peeps/new' do
-# 	user = User.first(:id => session[:user_id])
-# 	if user
-# 		erb :"peeps/new"	
-# 	else 
-# 		flash[:errors] = ["You need to sign in to post on Chitter"]
-# 		erb :"sessions/new"
-# 	end
-# end
 
 get '/api/peeps' do
 	content_type :json

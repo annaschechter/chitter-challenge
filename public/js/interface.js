@@ -16,15 +16,20 @@ $(document).ready(function() {
 			var email = $('#email').val();
 			var password = $('#password').val();
 			$.getJSON('/users/'+email+'/'+password, function(user) {
-				var name = user.name;
-				var user_name = user.user_name;
-				var id = user.id;
-				$.post('/sessions', {name: name, user_name: user_name, id: id});
-				$('#name-signed-in').text(name);
+
+				if(user === null) $('#errors').text("The email or password is incorrect")
+				else {
+					var name = user.name;
+					var user_name = user.user_name;
+					var id = user.id;
+					$.post('/sessions', {name: name, user_name: user_name, id: id});
+					$('#name-signed-in').text(name);
+					$('#signing-in').hide();
+					$('#signed-in').show();
+				};
 			});
 
-			$('#signing-in').hide();
-			$('#signed-in').show();
+
 		});
 	});
 	
@@ -38,16 +43,20 @@ $(document).ready(function() {
 				email: $('#email-create').val(),
 				password: $('#password-create').val(),
 			});
-			$.getJSON('/users/'+$('#email-create').val()+"/"+$('#password-create').val(), function () {
-				var name = user.name;
-				var user_name = user.user_name;
-				var id = user.id;
-				$.post('/sessions', {name: name, user_name: user_name, id: id});
-				$('#name-signed-in').text(name);
+			$.getJSON('/users/'+$('#email-create').val()+"/"+$('#password-create').val(), function (user) {
+				if(user === null) $('#errors').text("This username or email is already taken")
+				else {
+					var name = user.name;
+					var user_name = user.user_name;
+					var id = user.id;
+					$.post('/sessions', {name: name, user_name: user_name, id: id});
+					$('#name-signed-in').text(name);
+					$('#signed-in').show();
+					$('#signing-up').hide();
+				};
 			});
 
-			$('#signed-in').show();
-			$('#signing-up').hide();
+
 		});
 	});
 	
