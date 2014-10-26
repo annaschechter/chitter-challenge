@@ -58,11 +58,16 @@ $(document).ready(function() {
 	});
 
 	$.getJSON('api/peeps',function(data){
+		data.reverse();
 		$.each(data, function(index, peep){
 			var source = $("#peepTemplate").html();
 			var template = Handlebars.compile(source);
 			$('#peeps').append(template(peep));
 		});
+	});
+
+	$('#post-this').on('click', function() {
+		$.post('/api/peeps', {message: $('#message').val()});
 	});
 
 });

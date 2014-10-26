@@ -14,6 +14,13 @@ get '/api/peeps' do
     return peeps.to_json
 end
 
+post '/api/peeps' do
+	content_type :json
+	peep = Peep.create(:message => params[:message],
+		       :time_added => Time.now,
+		       :user_id => 1)
+end
+
 # post '/peeps' do
 # 	user = User.first(:id => session[:user_id])
 # 		if user

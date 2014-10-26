@@ -65,17 +65,6 @@
 			<p>Message: {{message}}</p>	
 		</template>
 
-
-<!-- 		<%if @peeps%> -->
-<!-- 		<% @peeps.each do |peep| %>
-		<% @user = User.first(:id => peep.user_id)%>
-		<ul>
-		<li><%=@user.name%>@<%=@user.user_name%><%=peep.time_added.strftime("%Y-%m-%d %H:%M:%S")%><br/><%=peep.message%></li>
-		</ul>
-		<%end%>
-		<%end%>
-		</div> -->
-
 		<div id="post-a-peep">
 			<a href="#">Post a Peep</a>
 		</div>
@@ -83,10 +72,10 @@
 <!-- 	================================================================================
 		Posting Peeps
 		================================================================================ -->
-		<div id="posting-peep">
-			Message:<textarea rows="7" cols="20" name="message"></textarea>
-			<a href="#" id="post">Post</a>
-		</div>
+		<form id="posting-peep">
+			Message: <input id="message" type="text" name="message">
+			<a href="#" id="post-this">Post</a>
+		</form>
 		</main>
 <!-- 	============================================================================= -->
 	<script type="text/javascript" src="js/jquery.js"></script>

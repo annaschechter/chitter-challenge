@@ -8,3 +8,4 @@ require_relative 'models/peep'
 
 
 DataMapper.finalize
+DataMapper.auto_upgrade!
