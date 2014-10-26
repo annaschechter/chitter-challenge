@@ -15,27 +15,8 @@ get '/api/peeps' do
 end
 
 post '/api/peeps' do
-	# 	user = User.first(:id => session[:user_id])
-	# if user
-	# 	erb :"peeps/new"	
-	# else 
-	# 	flash[:errors] = ["You need to sign in to post on Chitter"]
-	# 	erb :"sessions/new"
-	# end
 	content_type :json
 	peep = Peep.create(:message => params[:message],
 		       :time_added => Time.now,
-		       :user_id => 1)
+		       :user_id => params[:user_id])
 end
-
-# post '/peeps' do
-# 	user = User.first(:id => session[:user_id])
-# 		if user
-# 			peep = Peep.create(:message => params[:message],
-# 					       :time_added => Time.now,
-# 					       :user_id => user.id)
-# 			redirect '/'
-# 	    else
-# 			redirect '/peeps/new'
-# 		end
-# end

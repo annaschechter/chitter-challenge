@@ -82,11 +82,13 @@ $(document).ready(function() {
 	});
 
 	$('#post-this').on('click', function() {
-		userName = data[0];
-		nameUser = data[1];
-		userId = data[2];
-		$.post('/api/peeps', {message: $('#content').val()});
-		
+		if($('#content').val() === "") $('#errors').text("You cannot post an empty message!")
+		else {
+			userName = data[0];
+			nameUser = data[1];
+			userId = data[2];
+			$.post('/api/peeps', {message: $('#content').val(), user_id: userId});
+		};
 	});
 
 });
