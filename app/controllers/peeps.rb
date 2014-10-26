@@ -15,6 +15,13 @@ get '/api/peeps' do
 end
 
 post '/api/peeps' do
+	# 	user = User.first(:id => session[:user_id])
+	# if user
+	# 	erb :"peeps/new"	
+	# else 
+	# 	flash[:errors] = ["You need to sign in to post on Chitter"]
+	# 	erb :"sessions/new"
+	# end
 	content_type :json
 	peep = Peep.create(:message => params[:message],
 		       :time_added => Time.now,

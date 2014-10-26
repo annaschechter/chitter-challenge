@@ -6,13 +6,13 @@ end
 
 get '/users/:email/:password' do
 	content_type :json
-	email, password = params[:email], params[:password]
+	email= params[:email] 
+	password = params[:password]
 	user = User.authenticate(email, password)
-	# if user
-	# 	return user.to_json
- #    else
- #    	flash[:errors] = ["The email or password is incorrect"]
- #    end
+	return user.to_json
+    # else
+    # 	flash[:errors] = ["The email or password is incorrect"]
+    # end
 end 
 
 post '/users' do
