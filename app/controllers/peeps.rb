@@ -8,6 +8,6 @@ end
 post '/api/peeps' do
 	content_type :json
 	peep = Peep.create(:message => params[:message],
-		       :time_added => Time.now,
+		       :time_added => Time.now.strftime("%Y-%m-%d %H:%M:%S"),
 		       :user_id => params[:user_id])
 end

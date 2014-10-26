@@ -84,19 +84,27 @@ $(document).ready(function() {
 	$.getJSON('api/peeps',function(data){
 		data.reverse();
 		$.each(data, function(index, peep){
-			var source = $("#peepTemplate").html();
-			var template = Handlebars.compile(source);
-			$('#peeps').append(template(peep));
+			$.getJSON('/users/'+peep.user_id, function(user) {
+				peep.name = user.name;
+				peep.user_name = user.name;
+				var source = $("#peepTemplate").html();
+				var template = Handlebars.compile(source);
+				$('#peeps').append(template(peep));
+			});
+
+			
 		});
 	});
 
 	$('#post-this').on('click', function() {
 		if($('#content').val() === "") $('#errors').text("You cannot post an empty message!")
 		else {
-			userName = data[0];
-			nameUser = data[1];
-			userId = data[2];
-			$.post('/api/peeps', {message: $('#content').val(), user_id: userId});
+			$.get('/sessions', function(data) {
+				userId = data[2];
+				$.post('/api/peeps', {message: $('#content').val(), user_id: userId});
+			});
+			$('#posting-peep').hide();
+			$('#post-a-peep').show();
 		};
 	});
 

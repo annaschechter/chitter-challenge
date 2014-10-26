@@ -12,6 +12,13 @@ get '/users/:email/:password' do
 	return user.to_json
 end 
 
+get '/users/:id' do
+	content_type :json
+	id = params[:id] 
+	user = User.first(:id => id)
+	return user.to_json
+end 
+
 post '/users' do
 	content_type :json
 	user = User.create(:name => params[:name],
