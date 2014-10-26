@@ -67,7 +67,8 @@ $(document).ready(function() {
 	});
 
 	$('#post-this').on('click', function() {
-		$.post('/api/peeps', {message: $('#message').val()});
+		// $.getJSON('/sessions', );
+		$.post('/api/peeps', {message: $('#content').val()});
 	});
 
 });
