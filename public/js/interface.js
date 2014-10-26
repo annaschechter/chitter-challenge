@@ -3,6 +3,7 @@ $(document).ready(function() {
 	$('#signing-in').hide();
 	$('#signed-in').hide();
 	$('#signing-up').hide();
+	$('#posting-peep').hide();
 
 
 	$('#logo').on('click', function(){
@@ -50,4 +51,18 @@ $(document).ready(function() {
 		$('#signed-in').hide();
 		window.location = ("/");
 	});
+
+	$('#post-a-peep').on('click', function() {
+		$('#posting-peep').show();
+		$('#post-a-peep').hide();
+	});
+
+	$.getJSON('api/peeps',function(data){
+		$.each(data, function(index, peep){
+			var source = $("#peepTemplate").html();
+			var template = Handlebars.compile(source);
+			$('#peeps').append(template(peep));
+		});
+	});
+
 });
