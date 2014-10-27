@@ -48,21 +48,23 @@ $(document).ready(function() {
 				user_name: $('#user_name').val(),
 				email: $('#email_create').val(),
 				password: $('#password_create').val(),
+
+				
+
 			});
 			$.getJSON('/users/'+$('#email_create').val()+"/"+$('#password_create').val(), function (user) {
-				if(user === null) $('#errors').text("This username or email is already taken")
-				else {
-					var name = user.name;
-					var user_name = user.user_name;
-					var id = user.id;
-					$.post('/sessions', {name: name, user_name: user_name, id: id});
-					$('#name-signed-in').text(name);
-					$('#signed-in').show();
-					$('#signing-up').hide();
-				};
+					if(user === null) {
+						$('#errors').text("This username or email is already taken");
+					 } else {
+						var name = user.name;
+						var user_name = user.user_name;
+						var id = user.id;
+						$.post('/sessions', {name: name, user_name: user_name, id: id});
+						$('#name-signed-in').text(name);
+						$('#signed-in').show();
+						$('#signing-up').hide();
+					};
 			});
-
-
 		});
 	});
 	
@@ -97,7 +99,6 @@ $(document).ready(function() {
 				var template = Handlebars.compile(source);
 				$('#peeps').append(template(peep));
 			});
-
 			
 		});
 	});
