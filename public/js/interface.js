@@ -17,6 +17,7 @@ $(document).ready(function() {
 	});
 
 	$('#login').on('click', function(){
+		$('#signing-up').hide();
 		$('#signing-in').show();
 		$('#sign-in').on('click', function() {
 			var email = $('#email').val();
@@ -41,6 +42,7 @@ $(document).ready(function() {
 	
 
 	$('#join').on('click', function(){
+		$('#signing-in').hide();
 		$('#signing-up').show();
 		$('#sign-up').on('click', function() {
 			$.post('/users', {
