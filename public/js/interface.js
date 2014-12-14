@@ -5,8 +5,9 @@ $(document).ready(function() {
 	$('#posting-peep').hide();
 
 	$.getJSON('/sessions', function(data) {
-		if(data[0] === "" || "null") 	$('#signed-in').hide();
-		else {
+		if(data[0] === "" || "null") {
+			$('#signed-in').hide();
+		} else {
 			$('#name-signed-in').text(data[1]);
 			$('#signed-in').show();
 		};
@@ -19,53 +20,46 @@ $(document).ready(function() {
 	$('#login').on('click', function(){
 		$('#signing-up').hide();
 		$('#signing-in').show();
-		$('#sign-in').on('click', function() {
-			var email = $('#email').val();
-			var password = $('#password').val();
-			$.getJSON('/users/'+email+'/'+password, function(user) {
+	});
 
-				if(user === null) $('#errors').text("The email or password is incorrect")
-				else {
-					var name = user.name;
-					var user_name = user.user_name;
-					var id = user.id;
-					$.post('/sessions', {name: name, user_name: user_name, id: id});
-					$('#name-signed-in').text(name);
-					$('#signing-in').hide();
-					$('#signed-in').show();
-				};
-			});
-
-
+	$('#sign-in').on('click', function() {
+		var email = $('#email').val();
+		var password = $('#password').val();
+		$.getJSON('/users/' + email + '/' + password, function(user) {
+			if(user === null) {
+				$('#errors').text("The email or password is incorrect");
+			} else {
+				var name = user.name;
+				var user_name = user.user_name;
+				var id = user.id;
+				$.post('/sessions', {name: name, user_name: user_name, id: id});
+				$('#name-signed-in').text(name);
+				$('#signing-in').hide();
+				$('#signed-in').show();
+			};
 		});
 	});
 	
-
 	$('#join').on('click', function(){
 		$('#signing-in').hide();
 		$('#signing-up').show();
-		$('#sign-up').on('click', function() {
-			$.post('/users', {
-				name: $('#full_name').val(),
-				user_name: $('#user_name').val(),
-				email: $('#email_create').val(),
-				password: $('#password_create').val(),
+	});
 
-				
-
-			});
-			$.getJSON('/users/'+$('#email_create').val()+"/"+$('#password_create').val(), function (user) {
-					if(user === null) {
-						$('#errors').text("This username or email is already taken");
-					 } else {
-						var name = user.name;
-						var user_name = user.user_name;
-						var id = user.id;
-						$.post('/sessions', {name: name, user_name: user_name, id: id});
-						$('#name-signed-in').text(name);
-						$('#signed-in').show();
-						$('#signing-up').hide();
-					};
+	$('#sign-up').on('click', function() {
+		var name = $('#full_name').val();
+		var user_name = $('#user_name').val();
+		var email = $('#email_create').val();
+		var password = $('#password_create').val();
+		$.post('/users', {name: name, user_name: user_name, email: email, password: password}).done(function() {
+			$.getJSON('/users/' + email + "/" + password, function (user) {
+				if(user === null) {
+					$('#errors').text("This username or email is already taken");
+				 } else {
+					$.post('/sessions', {name: name, user_name: user_name, id: user.id});
+					$('#name-signed-in').text(name);
+					$('#signed-in').show();
+					$('#signing-up').hide();
+				};
 			});
 		});
 	});

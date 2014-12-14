@@ -22,12 +22,8 @@ end
 post '/users' do
 	content_type :json
 	user = User.create(:name => params[:name],
-						:user_name => params[:user_name],
+										:user_name => params[:user_name],
 		                :email => params[:email],
 		                :password => params[:password])
-	if user 
-		return user
-	else 
-		return ""
-	end
+	return user.to_json
 end
