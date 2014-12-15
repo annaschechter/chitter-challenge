@@ -2,6 +2,7 @@ $(document).ready(function() {
 
 	$('#signing-in').hide();
 	$('#signing-up').hide();
+	$('#sign-out').hide();
 	$('#posting-peep').hide();
 
 	$.getJSON('/sessions', function(data) {
@@ -19,7 +20,9 @@ $(document).ready(function() {
 
 	$('#login').on('click', function(){
 		$('#signing-up').hide();
+		$('#posting-peep').hide()
 		$('#signing-in').show();
+
 	});
 
 	$('#sign-in').on('click', function() {
@@ -33,15 +36,16 @@ $(document).ready(function() {
 				var user_name = user.user_name;
 				var id = user.id;
 				$.post('/sessions', {name: name, user_name: user_name, id: id});
-				$('#name-signed-in').text(name);
+				$('#message').text("You are signed in as " + name);
 				$('#signing-in').hide();
-				$('#signed-in').show();
+				$('#sign-out').show();
 			};
 		});
 	});
 	
 	$('#join').on('click', function(){
 		$('#signing-in').hide();
+		$('#posting-peep').hide()
 		$('#signing-up').show();
 	});
 
@@ -56,9 +60,9 @@ $(document).ready(function() {
 					$('#errors').text("This username or email is already taken");
 				 } else {
 					$.post('/sessions', {name: name, user_name: user_name, id: user.id});
-					$('#name-signed-in').text(name);
-					$('#signed-in').show();
+					$('#message').text("You are signed in as " + name);
 					$('#signing-up').hide();
+					$('#sign-out').show();
 				};
 			});
 		});
@@ -73,6 +77,8 @@ $(document).ready(function() {
 	});
 
 	$('#post-a-peep').on('click', function() {
+		$('#signing-in').hide();
+		$('#signing-up').hide();
 		$.getJSON('/sessions', function(data) {
 			if(data[0] === "") {
 				$('#errors').text("You need to be signed in to post on Chitter!!!");

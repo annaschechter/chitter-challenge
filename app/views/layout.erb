@@ -15,8 +15,9 @@
 			"login" & "join" buttons
 			====================================================== -->
 			<section id="login-join">
-	    		<a id="login" href="#" class="button">Log in</a>
-	    		<a id="join" href="#" class="button">Join</a>
+    		<a id="join" href="#" class="button">Join</a>
+    		<a id="login" href="#" class="button">Log in</a>
+    		<a id="sign-out" href="#" class="button">Sign Out</a>
 	    </section>
 		</header>
 		<main>
@@ -24,10 +25,8 @@
 	<!-- 	======================================================
 			"You're signed in as" message
 			====================================================== -->
-			<section id="signed-in">   	
-	    	<h3 id="message">You are signed in as </h3>
-	    	<h3 id="name-signed-in"></h3>
-				<a id="sign-out" href="#">Sign Out</a>
+			<section id="signed-in">
+	    	<h3 id="message"></h3>
 			</section>
 	<!-- 	======================================================
 			Sign-up window
@@ -37,7 +36,7 @@
 				<li>User Name: <input id="user_name" type="text" name="user_name"></li>
 				<li>Email: <input id="email_create" type="text" name="email"></li>
 				<li>Password: <input id="password_create" type="password" name="password"></li>
-				<li><a id="sign-up" href="#">Sign Up</a></li>
+				<li><a id="sign-up" href="#" class="button">Sign Up</a></li>
 			</ul>
 	<!-- 	======================================================
 			Sign-in window
@@ -45,7 +44,7 @@
 			<ul id="signing-in">
 				<li>Email: <input id="email" type="text" name="email"></li>
 				<li>Password: <input id="password" type="password" name="password"></li>
-				<li><a href="#" id="sign-in">Sign In</a></li>
+				<li><a href="#" id="sign-in" class="button">Sign In</a></li>
 			</ul>
 	<!-- 	======================================================
 			Peeps
@@ -61,10 +60,11 @@
 	<!-- 	================================================================================
 			Posting Peeps
 			================================================================================ -->
-			<form id="posting-peep">
-				Message: <textarea rows="7" cols="20" id="content" type="text" name="content"></textarea>
-				<a href="#" id="post-this">Post</a>
-			</form>
+			<ul id="posting-peep">
+				<li><p>Message:</p></li>
+				<li><textarea rows="5" cols="20" id="content" type="text" name="content"></textarea></li>
+				<li><a href="#" id="post-this" class="button">Post</a></li>
+			</ul>
 		</main>
 	<!-- 	============================================================================= -->
 		<script type="text/javascript" src="js/jquery.js"></script>
