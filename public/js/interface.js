@@ -1,18 +1,39 @@
 $(document).ready(function() {
 
+	var getPeeps = function() {
+		$('#peeps').empty();
+		$.getJSON('api/peeps',function(data){
+			data.reverse();
+			$.each(data, function(index, peep){
+				$.getJSON('/users/'+peep.user_id, function(user) {
+					peep.name = user.name;
+					peep.user_name = user.name;
+					var source = $("#peepTemplate").html();
+					var template = Handlebars.compile(source);
+					$('#peeps').append(template(peep));
+					
+				});
+			});
+		});
+	};
+
+	var getCurrentUser = function() {
+			$.getJSON('/sessions', function(data) {
+			if(data[0] === "" || "null") {
+				$('#signed-in').hide();
+			} else {
+				$('#message').text(data[1]);
+				$('#signed-in').show();
+			};
+		});
+	};
+
 	$('#signing-in').hide();
 	$('#signing-up').hide();
 	$('#sign-out').hide();
 	$('#posting-peep').hide();
-
-	$.getJSON('/sessions', function(data) {
-		if(data[0] === "" || "null") {
-			$('#signed-in').hide();
-		} else {
-			$('#name-signed-in').text(data[1]);
-			$('#signed-in').show();
-		};
-	});
+	getPeeps();
+	getCurrentUser()
 
 	$('#logo').on('click', function(){
 		window.location = ("/");
@@ -90,21 +111,6 @@ $(document).ready(function() {
 
 	});
 
-
-	$.getJSON('api/peeps',function(data){
-		data.reverse();
-		$.each(data, function(index, peep){
-			$.getJSON('/users/'+peep.user_id, function(user) {
-				peep.name = user.name;
-				peep.user_name = user.name;
-				var source = $("#peepTemplate").html();
-				var template = Handlebars.compile(source);
-				$('#peeps').append(template(peep));
-			});
-			
-		});
-	});
-
 	$('#post-this').on('click', function() {
 		if($('#content').val() === "") $('#errors').text("You cannot post an empty message!")
 		else {
@@ -114,6 +120,7 @@ $(document).ready(function() {
 			});
 			$('#posting-peep').hide();
 			$('#post-a-peep').show();
+			getPeeps();
 		};
 	});
 
