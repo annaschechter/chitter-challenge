@@ -15,7 +15,6 @@ Languages and Tools
 * Ruby
 * Sinatra
 * PostgreSQL
-* RSpec
 * JavaScript
 * jQuery
 * APIs
@@ -32,15 +31,10 @@ Install the gems:
 ```
 $ bundle install
 ```
-Create test and development databases:
+Create the development database:
 ```
 $ psql
-# create database chitter_test;
 # create database chitter_development;
-```
-Run RSpec to see the unit tests:
-```
-$ rspec
 ```
 Rackup:
 ```
